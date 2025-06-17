@@ -11,6 +11,8 @@ import { MessageService } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CardModule } from 'primeng/card';
+import { SplitButtonModule } from 'primeng/splitbutton';
+
 
 @Component({
   selector: 'app-book-form',
@@ -22,9 +24,11 @@ import { CardModule } from 'primeng/card';
     RouterModule,
     CardModule,
     InputTextModule,
-    InputNumberModule],
+    InputNumberModule, 
+    SplitButtonModule],
   templateUrl: './book-form.component.html',
-  styleUrl: './book-form.component.scss'
+  styleUrl: './book-form.component.scss',
+  providers: [MessageService]
 })
 
 export class BookFormComponent {
@@ -50,6 +54,27 @@ export class BookFormComponent {
       price: ['0', [Validators.required, Validators.min(0)]]
     });
   }
+
+  items = [
+    {
+      label: 'Save',
+      icon: 'pi pi-check',
+      command: () => {
+        if (this.edit) {
+          this.updateBook();
+        } else {
+          this.createBook();
+        }
+      }
+    },
+    {
+      label: 'Cancel',
+      icon: 'pi pi-times',
+      command: () => {
+        this.router.navigateByUrl('/');
+      }
+    }
+  ];
 
   ngOnInit(): void {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -136,8 +161,16 @@ export class BookFormComponent {
     });
 
   }
+  Save() {
+    console.log('Save button clicked');
+
+
+  
+  }
+
+  show() {
+    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Button clicked' });
+  }
 
 }
-
-
 

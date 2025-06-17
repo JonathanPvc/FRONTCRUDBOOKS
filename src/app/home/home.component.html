@@ -1,22 +1,33 @@
 <a routerLink="book-form/new" class="p-button font-bold">
-    nuevo libro
+  nuevo libro
 </a>
-@for (book of books; track book.id) {
-  <p-card header="{{ book.title }}" subheader="{{ book.author }}" [style]="{ width: '360px', backgroundColor: '#f5f5f5' }">
-    <ng-template pTemplate="header">
-      <img alt="Card" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg"  style="width: 100%; height: auto;" />
-    </ng-template>
-    <p>
-      {{ book.pages }}
-    </p>
-     <p>
-      {{ book.price }}
-    </p>
-    <ng-template pTemplate="footer">
-      <div class="flex gap-3 mt-1">
-        <p-button label="Cancel" severity="secondary" class="w-full" styleClass="w-full" />
-        <p-button label="Save" class="w-full" styleClass="w-full" />
-      </div>
-    </ng-template>
-  </p-card>
-}
+
+<!-- Mostrar mensaje si no hay libros y ya terminó de cargar -->
+<div *ngIf="!isLoading && books.length === 0" class="mt-4">
+  <a routerLink="book-form/new" class="p-button font-bold">
+    No existen libros, crea uno nuevo
+  </a>
+</div>
+
+<!-- Mostrar libros si existen -->
+<div class="flex flex-wrap gap-4 mt-4">
+  <ng-container *ngIf="books.length > 0">
+    @for (book of books; track book.id) {
+      <p-card header="{{ book.title }}" subheader="{{ book.author }}" 
+              [style]="{ width: '360px', backgroundColor: '#f5f5f5' }">
+        <ng-template pTemplate="header">
+          <img alt="Card" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg"
+               style="width: 100%; height: auto;" />
+        </ng-template>
+        <p>{{ book.pages }}</p>
+        <p>{{ book.price }}</p>
+        <ng-template pTemplate="footer">
+          <div class="flex gap-3 mt-1">
+            <p-button label="Cancel" severity="secondary" class="w-full" styleClass="w-full" />
+            <p-button label="Save" class="w-full" styleClass="w-full" />
+          </div>
+        </ng-template>
+      </p-card>
+    }
+  </ng-container>
+</div>
