@@ -1,48 +1,19 @@
-<div class="container-form ">
-  <p-card header="📚 Formulario de Libro" class="w-11 sm:w-8 md:w-6 lg:w-4 shadow-5 border-round-xl">
-    <div class="flex flex-column gap-4 p-3">
-    <div class="formgrid grid">
-    <div class="field col">
-        <label for="firstname2">Firstname</label>
-        <input id="firstname2" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-    </div>
-    <div class="field col">
-        <label for="lastname2">Lastname</label>
-        <input id="lastname2" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-    </div>
-</div>
-      <div class="flex justify-content-end gap-3">
-        <p-button label="Submit" icon="pi pi-check"></p-button>
-        <p-splitbutton label="Save" icon="pi pi-save" [model]="items" (onClick)="Save()"></p-splitbutton>
+<p-toast></p-toast>
+
+<div class="flex justify-content-center align-items-center min-h-screen w-full">
+  <p-card header="Formulario libro" class="w-10">
+    <form [formGroup]="bookForm" (ngSubmit)="edit ? updateBook() : createBook()" class="flex flex-column gap-2">
+
+      <div class="field">
+        <label for="title">Titulo</label>
+        <input type="text" pInputText formControlName="title" />
       </div>
-    </div>
 
-    <div class="card flex justify-center">
-    <p-toast />
-    <p-button (onClick)="show()" label="Show" />
-</div>
+      <div class="field">
+        <label for="author">Autor</label>
+        <input type="text" pInputText formControlName="author" />
+      </div>
 
-<div class="formgroup-inline">
-    <div class="field">
-        <label for="firstname5" class="p-sr-only">Firstname</label>
-        <input id="firstname5" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" placeholder="Firstname">
-    </div>
-    <div class="field">
-        <label for="lastname5" class="p-sr-only">Lastname</label>
-        <input id="lastname5" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" placeholder="Lastname">
-    </div>
-    <button type="button" class="bg-primary border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-primary-600 hover:border-primary-600 active:bg-primary-700 active:border-primary-700">Submit</button>
-</div>
-
-  </p-card>
-</div>
-
-<div class="flex flex-wrap justify-content-center">
-    <div class="border-round w-12rem h-6rem m-2 bg-primary font-bold flex align-items-center justify-content-center">border-round</div>
-    <div class="border-round-left w-12rem h-6rem m-2 bg-primary font-bold flex align-items-center justify-content-center">border-round-left</div>
-</div>
-<div class="flex flex-wrap justify-content-center">
-    <div class="border-round-top w-12rem h-6rem m-2 bg-primary font-bold flex align-items-center justify-content-center">border-round-top</div>
-    <div class="border-round-bottom w-12rem h-6rem m-2 bg-primary font-bold flex align-items-center justify-content-center">border-round-bottom</div>
-    <div class="border-round-right w-12rem h-6rem m-2 bg-primary font-bold flex align-items-center justify-content-center">border-round-right</div>
+    </form>
+</p-card>
 </div>
