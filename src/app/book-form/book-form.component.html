@@ -4,14 +4,24 @@
   <p-card header="Formulario libro" class="w-10">
     <form [formGroup]="bookForm" (ngSubmit)="edit ? updateBook() : createBook()" class="flex flex-column gap-2">
 
-      <div class="field">
+      <div class="field flex flex-column gap-1" > 
         <label for="title">Titulo</label>
         <input type="text" pInputText formControlName="title" />
       </div>
 
-      <div class="field">
+      <div class="field flex flex-column gap-1" > 
         <label for="author">Autor</label>
         <input type="text" pInputText formControlName="author" />
+      </div>
+
+          <div class="field flex flex-column gap-1" >
+        <label for="pages">Páginas</label>
+         <p-inputnumber inputId="integeronly" formControlName="pages" />
+      </div>
+
+      <div class="field flex flex-column gap-1" > 
+        <label for="price">Precio</label>
+        <p-inputnumber inputId="decimalonly" formControlName="price"  />
       </div>
 
     </form>
